@@ -1,65 +1,117 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>SGPA Calculator</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        #container {
+            max-width: 400px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0;
+            font-size: 18px;
+        }
+
+        input {
+            width: 80%;
+            padding: 8px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
-    <h1>SGPA Calculator</h1>
-    
-    <table>
-        <tr>
-            <th>Subject</th>
-            <th>Marks</th>
-        </tr>
-        <tr>
-            <td>Mathematics for CSE Stream-I</td>
-            <td><input type="number" min="0" max="100"></td>
-        </tr>
-        <tr>
-            <td>Physics for CSE Stream</td>
-            <td><input type="number" min="0" max="100"></td>
-        </tr>
-        <tr>
-            <td>Principles of Programming Using C</td>
-            <td><input type="number" min="0" max="100"></td>
-        </tr>
-        <tr>
-            <td>Communicative English</td>
-            <td><input type="number" min="0" max="100"></td>
-        </tr>
-        <tr>
-            <td>Kannada</td>
-            <td><input type="number" min="0" max="100"></td>
-        </tr>
-        <tr>
-            <td>Innovation and Design Thinking</td>
-            <td><input type="number" min="0" max="100"></td>
-        </tr>
-        <tr>
-            <td>ESC 1</td>
-            <td><input type="number" min="0" max="100"></td>
-        </tr>
-        <tr>
-            <td>ETC 1</td>
-            <td><input type="number" min="0" max="100"></td>
-        </tr>
-    </table>
-    <div class="buttons">
-        <button onclick="calculateSGPA()">Calculate SGPA</button>
-        <button class="reset" onclick="resetMarks()">Reset</button>
-    </div>
 
-    <div class="total-marks" id="sgpaDisplay"></div>
+<div id="container">
+    <h1>Temperature Converter</h1>
+    <form id="temperatureForm">
+        <label for="celsius">Celsius:</label>
+        <input type="number" id="celsius" min="-273.15" step="0.1" required>
 
-    <footer>
-        ©Santhosh
-    </footer>
+        <label for="fahrenheit">Fahrenheit:</label>
+        <input type="number" id="fahrenheit" min="-459.67" step="0.1" required>
 
-    <script src="script.js">
+        <label for="kelvin">Kelvin:</label>
+        <input type="number" id="kelvin" min="0" step="0.1" required>
 
-    </script>
-    
+        <button type="button" onclick="convertTemperature()">Convert</button>
+    </form>
+
+    <div id="result"></div>
+</div>
+
+<script>
+    function convertTemperature() {
+        let celsiusInput = document.getElementById('celsius');
+        let fahrenheitInput = document.getElementById('fahrenheit');
+        let kelvinInput = document.getElementById('kelvin');
+        let resultDiv = document.getElementById('result');
+
+        if (celsiusInput.value !== '') {
+            let celsius = parseFloat(celsiusInput.value);
+            let fahrenheit = (celsius * 9/5) + 32;
+            let kelvin = celsius + 273.15;
+            fahrenheitInput.value = fahrenheit.toFixed(1);
+            kelvinInput.value = kelvin.toFixed(1);
+            resultDiv.innerText = `Converted to Fahrenheit: ${fahrenheit.toFixed(1)}°F, Kelvin: ${kelvin.toFixed(1)}K`;
+        } else if (fahrenheitInput.value !== '') {
+            let fahrenheit = parseFloat(fahrenheitInput.value);
+            let celsius = (fahrenheit - 32) * 5/9;
+            let kelvin = celsius + 273.15;
+            celsiusInput.value = celsius.toFixed(1);
+            kelvinInput.value = kelvin.toFixed(1);
+            resultDiv.innerText = `Converted to Celsius: ${celsius.toFixed(1)}°C, Kelvin: ${kelvin.toFixed(1)}K`;
+        } else if (kelvinInput.value !== '') {
+            let kelvin = parseFloat(kelvinInput.value);
+            let celsius = kelvin - 273.15;
+            let fahrenheit = (celsius * 9/5) + 32;
+            celsiusInput.value = celsius.toFixed(1);
+            fahrenheitInput.value = fahrenheit.toFixed(1);
+            resultDiv.innerText = `Converted to Celsius: ${celsius.toFixed(1)}°C, Fahrenheit: ${fahrenheit.toFixed(1)}°F`;
+        } else {
+            resultDiv.innerText = 'Please enter a temperature to convert.';
+        }
+    }
+</script>
 
 </body>
 </html>
