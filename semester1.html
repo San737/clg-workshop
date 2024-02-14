@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SGPA Calculator</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <h1>SGPA Calculator</h1>
+    
+    <table>
+        <tr>
+            <th>Subject</th>
+            <th>Marks</th>
+        </tr>
+        <tr>
+            <td>Mathematics for CSE Stream-I</td>
+            <td><input type="number" min="0" max="100"></td>
+        </tr>
+        <tr>
+            <td>Physics for CSE Stream</td>
+            <td><input type="number" min="0" max="100"></td>
+        </tr>
+        <tr>
+            <td>Principles of Programming Using C</td>
+            <td><input type="number" min="0" max="100"></td>
+        </tr>
+        <tr>
+            <td>Communicative English</td>
+            <td><input type="number" min="0" max="100"></td>
+        </tr>
+        <tr>
+            <td>Kannada</td>
+            <td><input type="number" min="0" max="100"></td>
+        </tr>
+        <tr>
+            <td>Innovation and Design Thinking</td>
+            <td><input type="number" min="0" max="100"></td>
+        </tr>
+        <tr>
+            <td>ESC 1</td>
+            <td><input type="number" min="0" max="100"></td>
+        </tr>
+        <tr>
+            <td>ETC 1</td>
+            <td><input type="number" min="0" max="100"></td>
+        </tr>
+    </table>
+    <div class="buttons">
+        <button onclick="calculateSGPA()">Calculate SGPA</button>
+        <button class="reset" onclick="resetMarks()">Reset</button>
+    </div>
+
+    <div class="total-marks" id="sgpaDisplay"></div>
+
+    <footer>
+        ©Santhosh
+    </footer>
+
+    <script src="script.js">
+
+    </script>
+    
+
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SGPA and CGPA Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        #container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="container">
+    <h1>Choose Semester</h1>
+    <button onclick="showSemester(1)">Semester 1</button>
+    <button onclick="showSemester(2)">Semester 2</button>
+
+    <div id="semester1" style="display: none;">
+        <h2>Semester 1 SGPA Calculator</h2>
+        <script>
+            // Include the SGPA calculator code from the previous example here
+        </script>
+        <button onclick="calculateCGPA(1)">Calculate CGPA</button>
+        <div id="cgpaResult1"></div>
+    </div>
+
+    <div id="semester2" style="display: none;">
+        <h2>Semester 2 SGPA Calculator</h2>
+        <script>
+            // Include the SGPA calculator code from the previous example here
+        </script>
+        <button onclick="calculateCGPA(2)">Calculate CGPA</button>
+        <div id="cgpaResult2"></div>
+    </div>
+</div>
+
+<script>
+    function showSemester(semester) {
+        document.getElementById('semester1').style.display = semester === 1 ? 'block' : 'none';
+        document.getElementById('semester2').style.display = semester === 2 ? 'block' : 'none';
+    }
+
+    function calculateCGPA(semester) {
+        let sgpaId = `result${semester}`;
+        let sgpa = parseFloat(document.getElementById(sgpaId).innerText.split(": ")[1]);
+        
+        // Assume you have previous CGPA stored in a variable
+        let previousCGPA = 3.5; // Replace with actual previous CGPA
+
+        // Assume you have previous total credits stored in a variable
+        let previousTotalCredits = 20; // Replace with actual previous total credits
+
+        // Assume current semester credits
+        let currentSemesterCredits = 20; // Replace with actual current semester credits
+
+        let currentCGPA = ((previousCGPA * previousTotalCredits) + (sgpa * currentSemesterCredits)) / (previousTotalCredits + currentSemesterCredits);
+
+        document.getElementById(`cgpaResult${semester}`).innerText = `Your CGPA is: ${currentCGPA.toFixed(2)}`;
+    }
+</script>
+
+</body>
+</html>
